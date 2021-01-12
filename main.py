@@ -1,14 +1,15 @@
 import sys
+from UI import Ui_MainWindow
 from PyQt5 import uic
 from PyQt5.QtGui import QColor, QPainter
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from random import randint
 
 
-class MainWindow(QMainWindow):
+class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.do_paint = False
         self.initUI()
 
@@ -30,7 +31,7 @@ class MainWindow(QMainWindow):
     def draw_square(self, qp):
         x, y = randint(10, 490), randint(10, 490)
         radius = randint(5, min(495 - x, 495 - y))
-        qp.setBrush(QColor(255, 255, 0))
+        qp.setBrush(QColor(randint(0, 255), randint(0, 255), randint(0, 255)))
         qp.drawEllipse(x, y, radius, radius)
 
 
